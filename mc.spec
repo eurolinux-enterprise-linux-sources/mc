@@ -1,7 +1,7 @@
 Summary:	User-friendly text console file manager and visual shell
 Name:		mc
 Version:	4.8.7
-Release:	6%{?dist}
+Release:	8%{?dist}
 Epoch:		1
 License:	GPLv3+
 Group:		System Environment/Shells
@@ -91,6 +91,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libexecdir}/mc/ext.d
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1:4.8.7-8
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1:4.8.7-7
+- Mass rebuild 2013-12-27
+
 * Tue Jul  9 2013 Denys Vlasenko <dvlasenk@redhat.com> 4.8.7-6
 - Suppress automatic python dependency.
 
