@@ -1,0 +1,21 @@
+--- mc-4.8.6.orig/src/vfs/smbfs/helpers/lib/time.c	2012-08-27 09:48:27.000000000 +0200
++++ mc-4.8.6.orig/src/vfs/smbfs/helpers/lib/time.c	2013-02-19 18:38:53.592051702 +0100
+@@ -173,12 +173,14 @@ TimeZoneFaster (time_t t)
+             dst_table[i].start = dst_table[i].end = t;
+ 
+             /* no entry will cover more than 6 months */
+-            low = t - MAX_DST_WIDTH / 2;
+-            if (t < low)
++            if (t > TIME_T_MIN + MAX_DST_WIDTH / 2)
++                low = t - MAX_DST_WIDTH / 2;
++            else
+                 low = TIME_T_MIN;
+ 
+-            high = t + MAX_DST_WIDTH / 2;
+-            if (high < t)
++            if (t < TIME_T_MAX - MAX_DST_WIDTH / 2)
++                high = t + MAX_DST_WIDTH / 2;
++            else
+                 high = TIME_T_MAX;
+ 
+             /* widen the new entry using two bisection searches */
