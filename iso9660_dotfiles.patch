@@ -1,0 +1,13 @@
+diff -urpN mc-4.8.7.orig/src/vfs/extfs/helpers/iso9660.in mc-4.8.7/src/vfs/extfs/helpers/iso9660.in
+--- mc-4.8.7.orig/src/vfs/extfs/helpers/iso9660.in	2011-11-27 15:11:03.000000000 +0100
++++ mc-4.8.7/src/vfs/extfs/helpers/iso9660.in	2016-07-19 21:31:05.620161700 +0200
+@@ -72,7 +72,8 @@ BEGIN {
+   if (SEMICOLON = "YES") sub(";1$", "", name);
+   ## sub(";[0-9]+$", "", name) ## would break copyout
+   # skip . and ..
+-  if (name ~ /^\.\.?/) next;
++  if (name == ".") next;
++  if (name == "..") next;
+   printf "%s%s%s\n", attr, dir, name
+ }' 
+ }

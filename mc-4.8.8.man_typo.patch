@@ -1,0 +1,212 @@
+diff -urpN mc-4.8.7.orig/doc/man/mc.1.in mc-4.8.7/doc/man/mc.1.in
+--- mc-4.8.7.orig/doc/man/mc.1.in	2012-10-14 14:11:01.000000000 +0200
++++ mc-4.8.7/doc/man/mc.1.in	2016-03-01 18:37:19.428983887 +0100
+@@ -93,7 +93,8 @@ as an alias to the appropriate shell scr
+ .I \-s, \-\-slow
+ Set alternative mode drawing of frameworks.
+ If the section [Lines] is not filled, the symbol for the pseudographics
+-frame is a space, otherwise the frame characters are taken from follow params.
++frame is a space, otherwise the frame characters are taken from following
++parameters.
+ 
+ .B You can redefine the following variables:
+ .TP
+@@ -2090,8 +2091,8 @@ You can specify how the
+ .\"LINK2"
+ Quick search
+ .\"Quick search"
+-mode should works: case insensitively, case sensitively or be matched
+-to the the panel sort order: case sensitive or not.
++mode should work: case insensitively, case sensitively or be matched
++to the panel sort order: case sensitive or not.
+ .\"NODE "    Confirmation"
+ .SH "    Confirmation"
+ In this dialog you configure the confirmation options for file deletion,
+@@ -3936,7 +3937,7 @@ list of extensions of files. Separated b
+ .TP
+ .I extensions_case
+ (make sense only with 'extensions' parameter) make 'extensions'
+-rule case sentitive (true) or not (false).
++rule case sensitive (true) or not (false).
+ .PP
+ `type' key may have values:
+ .nf
+diff -urpN mc-4.8.7.orig/doc/man/mcedit.1.in mc-4.8.7/doc/man/mcedit.1.in
+--- mc-4.8.7.orig/doc/man/mcedit.1.in	2012-12-27 09:13:20.000000000 +0100
++++ mc-4.8.7/doc/man/mcedit.1.in	2016-03-01 18:37:19.429983888 +0100
+@@ -12,7 +12,7 @@ mcedit \- Internal file editor of GNU Mi
+ mcedit is a link to
+ .BR mc ,
+ the main GNU Midnight Commander executable. Executing GNU Midnight Commander
+-under this name requests staring the internal editor and opening files
++under this name runs the internal editor and opens files
+ specified on the command line. The editor is based on the terminal version of
+ .B cooledit
+ \- standalone editor for X Window System.
+@@ -21,8 +21,8 @@ specified on the command line. The edito
+ .I "+lineno"
+ Go to the line specified by number (do not put a space between the
+ .I "+"
+-sign and the number). Several line numbers are allowed but the last one will be
+-actual and it will be applied to the first file only.
++sign and the number). Several line numbers are allowed but only the last one
++will be used, and it will be applied to the first file only.
+ .TP
+ .I "\-b"
+ Force black and white display.
+@@ -181,9 +181,7 @@ The currently tagged files.
+ .I %T
+ The tagged files in the unselected panel.
+ .TP
+-.I %u
+-and
+-.I %U
++.IR %u " and " %U
+ Similar to the
+ .I %t
+ and
+@@ -192,9 +190,7 @@ macros, but in addition the files are un
+ only once per menu file entry or extension file entry, because next time
+ there will be no tagged files.
+ .TP
+-.I %s
+-and
+-.I %S
++.IR %s " and " %S
+ The selected files: The tagged files if there are any. Otherwise the
+ current file.
+ .PP
+@@ -218,23 +214,23 @@ in the
+ menu.
+ .SH CODE NAVIGATION
+ .B mcedit
+-can be used to navigation through code with tags files created by etags
+-or ctags commands. If there is no file TAGS code navigation would not work.
+-In example, in case of exuberant\-ctags for C language command will be:
++can be used for navigation through code with tags files created by etags
++or ctags commands. If there is no TAGS file code navigation will not work.
++For example, in case of exuberant\-ctags for C language command will be:
+ .PP
+ ctags \-e \-\-language\-force=C \-R ./
+ .PP
+-.B Meta\-Enter 
+-show list box to select item under cursor (cusor should stand at end of
+-word).
+-.PP
+-.B Meta\-Minus 
+-where minus is symbol "\-" go to previous function in navigation list (like a browser
+-Back).
++.B Meta\-Enter
++shows list box to select item under cursor (cursor should stand at the end
++of the word).
++.PP
++.B Meta\-Minus
++where minus is symbol "\-" goes to previous function in navigation list
++(like browser's Back button).
+ .PP
+ .B Meta\-Equal
+-where equal is symbol "=" go to next function in navigation list (like a browser
+-Forward).
++where equal is symbol "=" goes to next function in navigation list
++(like browser's Forward button).
+ .PP
+ .SH SYNTAX HIGHLIGHTING
+ .B mcedit
+@@ -247,9 +243,9 @@ If this file is missing, system\-wide
+ is used.
+ The file
+ .B ~/.config/mc/mcedit/Syntax
+-is rescanned on opening of a any new editor file.  The file contains
++is rescanned on opening of every new editor file.  The file contains
+ rules for highlighting, each of which is given on a separate line, and
+-define which keywords will be highlighted to what color.
++define which keywords will be highlighted with what color.
+ .PP
+ The file is divided into sections, each beginning with a line with the
+ .B file
+@@ -477,14 +473,13 @@ editbold=yellow,black:\\
+ editmarked=black,cyan"
+ .fi
+ .SH OPTIONS
+-Most options can now be set from the editors options dialog box.  See
+-the
++Most options can be set from Options dialog box.  See the
+ .B Options
+ menu.  The following options are defined in
+ .B ~/.config/mc/ini
+ and have obvious counterparts in the dialog box.  You can modify them to
+ change the editor behavior, by editing the file.  Unless specified, a 1
+-sets the option to on, and a 0 sets it to off, as is usual.
++sets the option to on, and a 0 sets it to off, as usual.
+ .TP
+ .I use_internal_edit
+ This option is ignored when invoking
+@@ -499,7 +494,7 @@ assume a tab spacing of 8. Use
+ to simulate a smaller tab spacing.
+ .TP
+ .I editor_fill_tabs_with_spaces
+-Never insert a tab space. Rather insert spaces (ascii 20h) to fill to the
++Never insert a tab character. Rather insert spaces (ascii 32) to fill to the
+ desired tab size.
+ .TP
+ .I editor_return_does_auto_indent
+@@ -523,38 +518,38 @@ When editing anywhere else, a normal tab
+ .I editor_option_save_mode
+ Possible values 0, 1 and 2.  The save mode (see the options menu also)
+ allows you to change the method of saving a file.  Quick save (0) saves
+-the file by immediately, truncating the disk file to zero length (i.e.
+-erasing it) and the writing the editor contents to the file.  This
++the file immediately, truncating the disk file to zero length (i.e.
++erasing it) and then writing the editor contents to the file.  This
+ method is fast, but dangerous, since a system error during a file save
+ will leave the file only partially written, possibly rendering the data
+ irretrievable.  When saving, the safe save (1) option enables creation
+ of a temporary file into which the file contents are first written.  In
+-the event of an problem, the original file is untouched.  When the
++the event of a problem, the original file is untouched.  When the
+ temporary file is successfully written, it is renamed to the name of the
+ original file, thus replacing it.  The safest method is create backups
+-(2).  Where a backup file is created before any changes are made.  You
++(2): a backup file is created before any changes are made.  You
+ can specify your own backup file extension in the dialog.  Note that
+ saving twice will replace your backup as well as your original file.
+ .TP
+ .I editor_word_wrap_line_length
+-line length to wrap. 72 default.
++Line length to wrap at. Default is 72.
+ .TP
+ .I editor_backup_extension
+-symbol for add extension to name of backup files. Default "~".
++Symbol to add to name of backup files. Default is "~".
+ .TP
+ .I editor_line_state
+-show state line of editor now it show number of file line (in future it
+-can show things like folding, breakpoints, etc.). M\-n toglle this option.
++Show state line of editor. Currently it shows current line number (in the future
++it might show things like folding, breakpoints, etc.). M\-n toggles this option.
+ .TP
+ .I editor_visible_spaces
+-Toggle show visible trailing spaces (TWS), if editor_visible_spaces=1 TWS
+-showed as '.'
++Toggle "show visible trailing spaces".  If editor_visible_spaces=1, they are shown
++as '.'
+ .TP
+ .I editor_visible_tabs
+-Toggle show visible tabs, if editor_visible_tabs=1 tabs showed as '<\-\-\-\->'
++Toggle "show visible tabs".  If editor_visible_tabs=1, tabs are shown as '<\-\-\-\->'
+ .TP
+ .I editor_persistent_selections
+-Do not remove block selection after moving the cursor.
++Do not remove block selection after cursor movement.
+ .TP
+ .I editor_cursor_beyond_eol
+ Allow moving cursor beyond the end of line.
+@@ -566,7 +561,7 @@ Allow moving cursor after inserted block
+ enable syntax highlighting.
+ .TP
+ .I editor_edit_confirm_save
+-show confirm dialog on save.
++Show confirmation dialog on save.
+ .TP
+ .I editor_option_typewriter_wrap
+ to be described

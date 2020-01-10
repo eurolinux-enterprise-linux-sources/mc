@@ -1,0 +1,34 @@
+From 031ab1711cad6367497f37603cdb4eadfca7bab0 Mon Sep 17 00:00:00 2001
+From: Andrew Borodin <aborodin@vmail.ru>
+Date: Thu, 5 Dec 2013 09:57:48 +0400
+Subject: [PATCH] Ticket #2857: add handling .zip extension.
+
+Add 'shell/i/.zoo' to detect zip archive using .zip extension
+in addition to 'type/i/^zip\ archive'.
+
+Thanks ctmp1 <gvlatyshev@gmail.com> for the original patch.
+
+Signed-off-by: Andrew Borodin <aborodin@vmail.ru>
+---
+ misc/mc.ext.in | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/misc/mc.ext.in b/misc/mc.ext.in
+index d330685..68c6819 100644
+--- a/misc/mc.ext.in
++++ b/misc/mc.ext.in
+@@ -681,6 +681,11 @@ shell/i/.arc
+ 	Extract (with flags)=I=%{Enter any Arc flags:}; if test -n "$I"; then arc x $I %f; fi
+ 
+ # zip
++shell/i/.zip
++	Open=%cd %p/uzip://
++	View=%view{ascii} @EXTHELPERSDIR@/archive.sh view zip
++
++# zip
+ type/i/^zip\ archive
+ 	Open=%cd %p/uzip://
+ 	View=%view{ascii} @EXTHELPERSDIR@/archive.sh view zip
+-- 
+1.8.1.4
+

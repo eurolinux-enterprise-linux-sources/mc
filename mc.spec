@@ -1,7 +1,7 @@
 Summary:	User-friendly text console file manager and visual shell
 Name:		mc
 Version:	4.8.7
-Release:	8%{?dist}
+Release:	11%{?dist}
 Epoch:		1
 License:	GPLv3+
 Group:		System Environment/Shells
@@ -15,6 +15,9 @@ Patch1:		mc-widgetsegfault.patch
 Patch2:		mc-VFSsegfault.patch
 Patch3:		mc-signed_overflow_fix.patch
 Patch4:         mc-4.8.8.man_mcdiff.patch
+Patch5:         mc-4.8.8.man_typo.patch
+Patch6:         mc-4.8.8.mcext_zip.patch
+Patch7:         iso9660_dotfiles.patch
 
 # mc-4.8.7 has just two python scripts: /usr/libexec/mc/extfs.d/{s3+,uc1541}.
 # Build machinery automatically adds python dependency.
@@ -36,6 +39,9 @@ specific files.
 %patch2 -p1 -b .VFSsegfault
 %patch3 -p1 -b .signed_overflow_fix
 %patch4 -p1 -b .man_mcdiff
+%patch5 -p1 -b .man_typo
+%patch6 -p1 -b .mcext_zip
+%patch7 -p1 -b .iso9660_dotfiles
 
 %build
 export CFLAGS="-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE $RPM_OPT_FLAGS -Wno-strict-aliasing"
@@ -91,6 +97,15 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libexecdir}/mc/ext.d
 
 %changelog
+* Tue Jul 19 2016 Denys Vlasenko <dvlasenk@redhat.com> 4.8.7-11
+- Make ISO viewer show dotfiles too. Resolves rhbz#1346905
+
+* Sun Jan 10 2016 Denys Vlasenko <dvlasenk@redhat.com> 4.8.7-10
+- Fix .zip handling. Resolves #1249642.
+
+* Sun Jan 10 2016 Denys Vlasenko <dvlasenk@redhat.com> 4.8.7-9
+- Fix typos in manpage. Resolves #1155006.
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1:4.8.7-8
 - Mass rebuild 2014-01-24
 
